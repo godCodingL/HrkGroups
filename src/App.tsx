@@ -21,8 +21,6 @@ import {
   Phone,
   Mail,
   Clock,
-  Download,
-  Calendar,
 } from "lucide-react";
 import "./App.css";
 
