@@ -1,0 +1,119 @@
+/* App-specific styles */
+
+/* Ensure smooth section transitions while keeping GPU work reasonable */
+.section-pinned {
+  will-change: transform;
+}
+
+/* Glass panel enhancements */
+.glass-panel,
+.glass-panel-sm {
+  will-change: transform, opacity;
+}
+
+/* Magnetic hover effect base */
+.magnetic-hover {
+  will-change: transform;
+}
+
+/* Ledger item animations */
+.ledger-item {
+  will-change: background, border-color;
+}
+
+/* Button hover states */
+.btn-primary,
+.btn-secondary {
+  will-change: transform, box-shadow;
+}
+
+/* Image loading optimization */
+img {
+  will-change: transform, opacity;
+}
+
+/* Ensure text doesn't get blurry during animations */
+.font-display,
+.font-mono {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Navigation glass treatment and subtle border */
+.nav-glass {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 55%),
+    linear-gradient(to bottom, rgba(51, 51, 51, 0.98), rgba(51, 51, 51, 0.9));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Hero-specific refinements so the face is always readable */
+.hero-overlay-gradient {
+  background: linear-gradient(
+      120deg,
+      rgba(5, 5, 5, 0.96) 0%,
+      rgba(5, 5, 5, 0.92) 18%,
+      rgba(5, 5, 5, 0.75) 36%,
+      rgba(5, 5, 5, 0.15) 70%,
+      transparent 100%
+    );
+}
+
+.hero-image {
+  object-position: 50% 18%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .glass-panel {
+    border-radius: 22px;
+    padding: 1.5rem;
+  }
+  
+  .glass-panel-sm {
+    border-radius: 18px;
+    padding: 1.25rem;
+  }
+
+  .hero-image {
+    object-position: 50% 24%;
+  }
+}
+
+@media (max-width: 640px) {
+  .glass-panel {
+    border-radius: 18px;
+    padding: 1.25rem;
+  }
+  
+  .glass-panel-sm {
+    border-radius: 14px;
+    padding: 1rem;
+  }
+  
+  .section-pinned {
+    min-height: 100svh;
+  }
+
+  .hero-image {
+    object-position: 50% 28%;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .section-pinned {
+    will-change: auto;
+  }
+}
