@@ -217,7 +217,7 @@ function HeroSection() {
               {[
                 "HRK Enterprises",
                 "HRK Merchants & Co.",
-                "HRK Treaders",
+                "HRK Trader's",
                 "EV Dealership Network",
                 "East Champaran, Bihar",
               ].map((item, i) => (
