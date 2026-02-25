@@ -7,7 +7,6 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
-import Lenis from "lenis";
 import {
   Scale,
   FileCheck,
@@ -24,6 +23,12 @@ import {
   Clock,
 } from "lucide-react";
 import "./App.css";
+import AdityaGiriPage from "./pages/AdityaGiriPage";
+import EnterprisesPage from "./pages/EnterprisesPage";
+import MerchantsPage from "./pages/MerchantsPage";
+import TradersPage from "./pages/TradersPage";
+import { SEOHead } from "./components/SEOHead";
+import { Layout } from "./components/Layout";
 
 // Magnetic Mouse Effect Hook
 function useMagneticEffect(
@@ -830,100 +835,46 @@ function ContactSection() {
 
 // Main Page Component
 function MainPage() {
-  useEffect(() => {
-    // Initialize Lenis smooth scrolling
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
   return (
-    <div className="relative bg-hrk-black min-h-screen">
-      {/* Grain Overlay */}
-      <div className="grain-overlay" />
-
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 lg:px-12 py-4 nav-glass">
-        <div className="flex justify-between items-center">
-          <motion.a
-            href="/"
-            className="font-mono text-xs tracking-[0.3em] text-hrk-white uppercase hover:text-hrk-blue transition-colors"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            HRK GROUPS
-          </motion.a>
-
-          <motion.div
-            className="hidden md:flex items-center gap-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
-          >
-            {["Enterprises", "Merchants", "Vision", "Contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="font-mono text-xs tracking-[0.18em] text-hrk-gray uppercase hover:text-hrk-white transition-colors"
-              >
-                {item}
-              </a>
-            ))}
-          </motion.div>
-        </div>
-      </nav>
-
-      {/* Sections */}
-      <main className="relative">
-        <HeroSection />
-        <div id="enterprises">
-          <EnterprisesSection />
-        </div>
-        <div id="merchants">
-          <MerchantsSection />
-        </div>
-        <div id="vision">
-          <QuoteSection />
-        </div>
-        <div id="contact">
-          <ContactSection />
-        </div>
-      </main>
-    </div>
+    <>
+      <SEOHead
+        title="HRK Groups - Industrial Solutions & Green Mobility"
+        description="HRK Groups: Leading industrial recycling, electric mobility, and B2B trading solutions across Eastern India."
+        keywords="HRK Groups, Industrial Recycling, Electric Vehicles, Sustainable Business, B2B Trading"
+        ogUrl="https://hrkgroups.com"
+      />
+      <HeroSection />
+      <div id="enterprises">
+        <EnterprisesSection />
+      </div>
+      <div id="merchants">
+        <MerchantsSection />
+      </div>
+      <div id="vision">
+        <QuoteSection />
+      </div>
+      <div id="contact">
+        <ContactSection />
+      </div>
+    </>
   );
 }
 
 // Route-specific Components
-function AdityaGiriPage() {
-  return <MainPage />;
+function AdityaGiriRoute() {
+  return <AdityaGiriPage />;
 }
 
-function EnterprisesPage() {
-  return <MainPage />;
+function EnterprisesRoute() {
+  return <EnterprisesPage />;
 }
 
-function MerchantsPage() {
-  return <MainPage />;
+function MerchantsRoute() {
+  return <MerchantsPage />;
 }
 
-function TradersPage() {
-  return <MainPage />;
+function TradersRoute() {
+  return <TradersPage />;
 }
 
 // Main App
@@ -931,14 +882,16 @@ function App() {
   useLocation(); // Hook to detect route changes
 
   return (
-    <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/aditya-giri" element={<AdityaGiriPage />} />
-      <Route path="/hrk-enterprises" element={<EnterprisesPage />} />
-      <Route path="/hrk-merchants-co" element={<MerchantsPage />} />
-      <Route path="/hrk-traders" element={<TradersPage />} />
-      <Route path="*" element={<MainPage />} />
-    </Routes>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/aditya-giri" element={<AdityaGiriRoute />} />
+        <Route path="/hrk-enterprises" element={<EnterprisesRoute />} />
+        <Route path="/hrk-merchants-co" element={<MerchantsRoute />} />
+        <Route path="/hrk-traders" element={<TradersRoute />} />
+        <Route path="*" element={<MainPage />} />
+      </Routes>
+    </Layout>
   );
 }
 
