@@ -215,7 +215,9 @@ function HeroSection() {
             </h3>
             <div className="space-y-4">
               {[
-                "Recycling & Trading",
+                "HRK Enterprises",
+                "HRK Merchants & Co.",
+                "HRK Treaders",
                 "EV Dealership Network",
                 "East Champaran, Bihar",
               ].map((item, i) => (
