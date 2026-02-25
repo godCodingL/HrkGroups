@@ -770,7 +770,7 @@ function ContactSection() {
               </span>
             </div>
             <p className="text-hrk-white text-lg font-display">
-              +91 77008 56702
+              +91 9801900817
             </p>
           </div>
 
