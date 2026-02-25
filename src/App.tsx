@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import {
   motion,
   useScroll,
@@ -827,8 +828,8 @@ function ContactSection() {
   );
 }
 
-// Main App
-function App() {
+// Main Page Component
+function MainPage() {
   useEffect(() => {
     // Initialize Lenis smooth scrolling
     const lenis = new Lenis({
@@ -860,7 +861,7 @@ function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 lg:px-12 py-4 nav-glass">
         <div className="flex justify-between items-center">
           <motion.a
-            href="#"
+            href="/"
             className="font-mono text-xs tracking-[0.3em] text-hrk-white uppercase hover:text-hrk-blue transition-colors"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -905,6 +906,39 @@ function App() {
         </div>
       </main>
     </div>
+  );
+}
+
+// Route-specific Components
+function AdityaGiriPage() {
+  return <MainPage />;
+}
+
+function EnterprisesPage() {
+  return <MainPage />;
+}
+
+function MerchantsPage() {
+  return <MainPage />;
+}
+
+function TradersPage() {
+  return <MainPage />;
+}
+
+// Main App
+function App() {
+  useLocation(); // Hook to detect route changes
+
+  return (
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/aditya-giri" element={<AdityaGiriPage />} />
+      <Route path="/hrk-enterprises" element={<EnterprisesPage />} />
+      <Route path="/hrk-merchants-co" element={<MerchantsPage />} />
+      <Route path="/hrk-traders" element={<TradersPage />} />
+      <Route path="*" element={<MainPage />} />
+    </Routes>
   );
 }
 
